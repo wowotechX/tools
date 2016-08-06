@@ -1,0 +1,9 @@
+splboot.bin
+    --Used to initialize Bubblegum-96's DDR.
+    --Usage:
+        1 Press ADFU key
+        2 Sudo ../dfu/dfu bubblegum 0xe406b200 splboot.bin 1
+        3 Wait, the board will reboot and re-enter into
+          DFU mode(then DDR is available)
+
+
