@@ -5,10 +5,10 @@
 #	 ./flash_sdcard.sh kernel  ===========>it will flash kernel and dtb
 #    ./flash_sdcard.sh rootfs   ===========>it will flash rootfs
 
-BUILD_DIR=../../build
+BUILD_DIR=../../../build
 OUT_UBOOT_DIR=$BUILD_DIR/out/u-boot
-OUT_KERNEL_DIR=$BUILD_DIR/out/linux/
-OUT_ROOTFS_DIR=$BUILD_DIR/out/ramdisk
+OUT_KERNEL_DIR=$BUILD_DIR/out/linux
+OUT_ROOTFS_DIR=$BUILD_DIR/out/rootfs
 
 
 SEC_UBOOT_SPL_START=1
