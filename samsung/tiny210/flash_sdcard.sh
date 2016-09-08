@@ -21,6 +21,8 @@ let SEC_DTB_START=SEC_UIMAGE_START+SEC_UIMAGE_LEN
 SEC_DTB_LEN=128		 #dtb 64KB
 let SEC_ROOTFS_START=SEC_DTB_START+SEC_DTB_LEN
 SEC_ROOTFS_LEN=8192  #rootfs 4MB
+let SEC_FIT_IMAGE_START=SEC_ROOTFS_START+SEC_ROOTFS_LEN
+SEC_FIT_IMAGE_LEN=40960 #fit_image 20MB
 
 echo SEC_UBOOT_SPL_START=$SEC_UBOOT_SPL_START
 echo SEC_UBOOT_START=$SEC_UBOOT_START
@@ -41,4 +43,8 @@ fi
 
 if [ "$1" = "rootfs" ];then
 sudo dd iflag=dsync oflag=dsync if=$OUT_ROOTFS_DIR/ramdisk.img of=/dev/sdb  seek=$SEC_ROOTFS_START
+fi
+
+if [ "$1" = "fit_image" ];then
+sudo dd iflag=dsync oflag=dsync if=$BUILD_DIR/out/xprj_uImage.itb of=/dev/sdb  seek=$SEC_FIT_IMAGE_START
 fi
