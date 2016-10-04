@@ -75,6 +75,10 @@ static libusb_device_handle *b96_init_device(void)
 		return handler;
 	}
 
+	r1 = libusb_reset_device(handler);
+	if (r1 != 0)
+		ERR("Error: cannot reset device\n");
+
 	r1 = libusb_get_device_descriptor(libusb_get_device(handler), &desc);
 	if (r1 != 0)
 		ERR("Error: cannot get device descriptor\n");
@@ -168,7 +172,7 @@ void readCSW(libusb_device_handle *handler)
 			if (r1 == 0) {
 				INFO("CSW:");
 				for (i = 0; i<transferred; i++)
-					INFO("%02x", buf1[i]);
+					INFO("%02x ", buf1[i]);
 				INFO("\n");
 			}
 			state = 2;
@@ -348,7 +352,7 @@ static void writeBinaryFileSeek(libusb_device_handle *handler,
 		r1 = libusb_bulk_transfer(handler, 0x01, buf1, rLen,
 					  &transferred, 0);
 		if (r1 != 0) {
-			ERR("Error: cannot send data\n");
+			ERR("Error: cannot send data(%d)\n", r1);
 			break;
 		}
 
